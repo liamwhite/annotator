@@ -1,0 +1,42 @@
+h4 align="center"
+  | Chapter
+  =< @chapter.id
+
+table.chapter-table
+  thead
+    tr
+      th Line
+      th Source Text
+      th Line Notes
+      th.p300 Summary
+  tbody
+    - acc = 0
+    - @chapter.body.split("\n\n").each_with_index do |para, pnum|
+      - para.each_line.each_with_index do |line, num|
+        tr
+          td.lineno
+            = num+acc+1 if (num+acc+1) % 5 == 0
+          td.text
+            = line
+            | &nbsp;
+          td.annotation data-number=num+acc data-chapter-id=@chapter.id contenteditable="true" = @annotations[num+acc]
+          - if num == 0
+            td.summary data-number=pnum data-chapter-id=@chapter.id rowspan=para.each_line.count contenteditable="true" = @summaries[pnum]
+      tr
+        td
+        td &nbsp;
+        td
+        td
+      - acc += para.each_line.count
+
+table.fullwidth
+  tr
+    - if @chapter.prev_chapter
+      td
+        a href=chapter_path(@chapter.prev_chapter)
+          | << Prev
+
+    - if @chapter.next_chapter
+      td align="right"
+        a href=chapter_path(@chapter.next_chapter)
+          | Next >>
