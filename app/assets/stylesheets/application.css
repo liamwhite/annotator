@@ -16,7 +16,7 @@
 
 body {
   font-family: 'Georgia', serif;
-  font-size: 150%;
+  font-size: 125%;
 }
 
 .chapter-table {
@@ -28,8 +28,8 @@ body {
 }
 
 .chapter-table th {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }
 
 .lineno {
@@ -47,7 +47,7 @@ body {
 
 .annotation, .summary {
   white-space: pre-wrap;
-  max-width: 400px;
+  width: 15vw;
 }
 
 .fullwidth {
